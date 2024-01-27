@@ -35,11 +35,11 @@ function Header(props) {
                 </Navbar.Collapse>
                 
             <div className='flex gap-2'>
-                <Button className='lg:hidden sm:inline'>
+                <Button className='  sm:inline'  color='gray' pill >
                     <FaMoon/>
                 </Button>
                 <Link to="/Login">
-                    <button className="bg-gradient-to-r from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Log In</button>
+                    <button  className="bg-gradient-to-r hover:opacity-80 from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Log In</button>
                 </Link>
                
                 <Navbar.Toggle/>
