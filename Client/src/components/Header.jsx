@@ -41,6 +41,9 @@ function Header(props) {
                 <Link to="/Login">
                     <button  className="bg-gradient-to-r hover:opacity-80 from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Log In</button>
                 </Link>
+                <Link to="/register">
+                    <button  className="bg-gradient-to-r hover:opacity-80 from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Sign Up</button>
+                </Link>
                
                 <Navbar.Toggle/>
             </div>
