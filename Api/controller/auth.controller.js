@@ -1,11 +1,12 @@
 import User from "../models/user.model.js";
 import  bcryptjs from 'bcryptjs'
+import {errorHendeler} from "../utils/error.js";
 
-export const signUp = async (req, res) => {
+export const signUp = async (req, res, next) => {
    const {username, email, passwoard  } = req.body;
 
    if(!username || !email || !passwoard || username === '' || email === '' || passwoard == ''){
-    return (res.status(400).json({message : 'All files are required!!!'}));
+      next(errorHendeler(400, 'All files are required!!!' ));
    }
     //    hashing passworad with bycriptjs----------------------------
    const hashpasswoard =bcryptjs.hashSync(passwoard)
@@ -22,7 +23,7 @@ export const signUp = async (req, res) => {
     res.json('SignUp successful')
    }
    catch(err){
-    res.status(500).json({message : err.message});
+    next(err);
    }
    
 };

@@ -22,5 +22,22 @@ app.listen(3000, ()=>{
     console.log("port 3000 is running  !!!!")
 });
 
+
+// get API-----------------------------------------------
 app.use('/api/user' ,userRouter);
+
+// signUp ApI---------------------------------------
 app.use('/api', authRouter );
+
+
+
+// error hendleing----------------------------------------
+app.use((err, req, res, next) => {
+ const statusCode  = req.statusCode || 500;
+ const maessage = err.message || 'internal server error';
+ res.status(statusCode).json({
+    success : 'false',
+    statusCode,
+    maessage
+ })
+})
