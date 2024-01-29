@@ -9,7 +9,8 @@ export const signUp = async (req, res, next) => {
       next(errorHendeler(400, 'All files are required!!!' ));
    }
     //    hashing passworad with bycriptjs----------------------------
-   const hashpasswoard =bcryptjs.hashSync(passwoard)
+   const salt = bcryptjs.genSaltSync(10);
+   const hashpasswoard =bcryptjs.hashSync(passwoard, salt);
    const newUser = User(
     {
         username,
