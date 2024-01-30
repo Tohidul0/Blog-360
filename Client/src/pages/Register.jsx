@@ -1,29 +1,48 @@
 import React, { useState } from 'react';
-import {  Link } from 'react-router-dom';
-import { Button, Label, TextInput } from 'flowbite-react';
+import {  Link, useNavigate, } from 'react-router-dom';
+import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 
 function Register(props) {
     const [formData, setFormData] = useState({});
+    const [errormessage, setErrormessage] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate('');
     const hendleChange =(e) =>{
-        setFormData({...formData, [e.target.id] : e.target.value })
+        setFormData({...formData, [e.target.id] : e.target.value.trim() })
         
     }
     const hendleSubmit = async (e) =>{
         e.preventDefault(); 
         console.log(formData)
         console.log('clickeeddd')
+        if(!formData.username || !formData.email || !formData.passwoard){
+          return   setErrormessage('all field required');
+        }
         try{
+            setLoading(true);
             const res = await fetch('http://localhost:3000/api/signUp',{
                 method: "POST",
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify(formData)
                 
             });
-            // const data = await res.json();
+           
+            const data = await res.json();
+            if(!res.ok){
+                setLoading(false);
+                
+                return setErrormessage("You have already account plz LogIn");
+                
+                
+            }
+            if(res.ok){
+                setLoading(false);
+                navigate('/');
+            }
         }
         catch(err){
-
-            console.log(err);
+            setLoading(false);
+            return setErrormessage(err.message);
         }
     }
 
@@ -61,7 +80,18 @@ function Register(props) {
                     
                     onBlur={hendleChange}
                     />
-                <Button type="submit" className='mt-5'>Sign Up</Button>
+                <Button type="submit" className='mt-5' disabled={loading} >
+                    {
+                      loading ? (
+                        <>
+                        <Spinner className='text-sm'/> loading.....
+                        </>
+                        
+                      )
+                      :
+                        "Sign Up"
+                    }
+                </Button>
 
             </form>
             <p className='text-sm mt-2'>Already have an account?
@@ -69,7 +99,15 @@ function Register(props) {
             <span className='text-cyan-500 font-semibold'>Sign in</span>
             </Link>
             </p>
+            {errormessage && (
+                <Alert className='mt-5' color='failure'>{errormessage}</Alert>
+            )
+                
+            }
             </div>
+            
+            
+            
         </div>
     );
 }
