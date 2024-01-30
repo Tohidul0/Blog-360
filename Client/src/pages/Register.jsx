@@ -28,16 +28,16 @@ function Register(props) {
             });
            
             const data = await res.json();
-            if(!res.ok){
+            if(data.success === "false"){
                 setLoading(false);
                 
-                return setErrormessage("You have already account, plz LogIn");
+                return setErrormessage(data.maessage);
                 
                 
             }
             if(res.ok){
                 setLoading(false);
-                navigate('/');
+                navigate('/signIn');
             }
         }
         catch(err){
