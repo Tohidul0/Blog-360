@@ -7,3 +7,5 @@ npm i express
 npm i mongoose
 npm i dotenv
 npm i bcryptjs
+npm i cors
+npm i jsonwebtoken

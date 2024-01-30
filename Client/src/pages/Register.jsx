@@ -31,7 +31,7 @@ function Register(props) {
             if(!res.ok){
                 setLoading(false);
                 
-                return setErrormessage("You have already account plz LogIn");
+                return setErrormessage("You have already account, plz LogIn");
                 
                 
             }
