@@ -10,3 +10,4 @@ npm i bcryptjs
 npm i cors
 npm i jsonwebtoken
 npm install @reduxjs/toolkit react-redux
+npm i redux-persist

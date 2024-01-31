@@ -45,7 +45,7 @@ function LogIn(props) {
                 
             }
             if(res.ok){
-                dispatch(signInSuccess());
+                dispatch(signInSuccess(data));
                 navigate('/');
             }
         }
