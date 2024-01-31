@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
+import {useDispatch, useSelector} from 'react-redux';
+import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
 
 function LogIn(props) {
     const [formData, setFormData] = useState({});
-    const [errormessage, setErrormessage] = useState(null);
-    const [loading, setLoading] = useState(false);
+   const {loading, error:errormessage} = useSelector(state => state.user)
     const navigate = useNavigate('');
-    
+    const dispatch = useDispatch();
     
     
     // hendleChane part----------------------------------------
@@ -25,10 +26,10 @@ function LogIn(props) {
         console.log(formData)
         console.log('clickeeddd')
         if(!formData.email || !formData.passwoard || formData.email==='' || formData.passwoard === ''){
-          return   setErrormessage('all field required');
+          dispatch(signInFailure("all field requred"))
         }
         try{
-            setLoading(true);
+            dispatch(signInStart());
             const res = await fetch('http://localhost:3000/api/signIn',{
                 method: "POST",
                 headers: {'Content-Type' : 'application/json'},
@@ -38,26 +39,25 @@ function LogIn(props) {
            
             const data = await res.json();
             if(data.success === "false"){
-                setLoading(false);
                 
-                return setErrormessage(data.maessage);
                 
+                dispatch(signInFailure(data.maessage))
                 
             }
             if(res.ok){
-                setLoading(false);
+                dispatch(signInSuccess());
                 navigate('/');
             }
         }
         catch(err){
-            setLoading(false);
-            return setErrormessage(err.message);
+            
+            dispatch.signInFailure(err.maessage);
         }
     }
 
 
     return (
-        <div className='mt-20 min-h-screen md:mx-auto sm:px-7  flex justify-center flex-col md:flex-row   max-w-3xl '>
+        <div className='mt-20  min-h-screen md:mx-auto sm:px-7  flex justify-center flex-col md:flex-row   max-w-3xl '>
             <div className=' flex-1  my-20 '>
                     <Link to='/' className='white-space: nowrap   text-3xl font-bold'>
                         <span className='text-red-600 cursor-pointer'>Blog</span>

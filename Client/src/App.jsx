@@ -6,6 +6,7 @@ import Projects from './pages/Projects';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import Header from './components/Header';
+import Footercompo from './pages/Footercompo';
 
 function App() {
  
@@ -21,6 +22,7 @@ function App() {
             <Route path='/LogIn' element={<LogIn></LogIn>}></Route>
             <Route path='/register' element={<Register></Register>}></Route>
         </Routes>
+        <Footercompo></Footercompo>
       </BrowserRouter>
     </>
   )
