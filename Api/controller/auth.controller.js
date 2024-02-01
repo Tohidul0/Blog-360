@@ -74,11 +74,11 @@ export const google = async (req, res, next) => {
       }
       else{
          const generatePass = Math.random().toString(36).slice(-8);
-         const hashpasswoard = bcryptjs.compareSync(generatePass,10);
+         const hashpasswoard = bcryptjs.hashSync(generatePass,10);
          const newUser = new User(
             {
                 username : name,
-                email,
+                email: email,
                 passwoard : hashpasswoard,
                 profilePicture : photoUrl
             }

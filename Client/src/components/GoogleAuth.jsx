@@ -26,6 +26,8 @@ function GoogleAuth(props) {
                 
             });
             const data = await res.json();
+            console.log(resultFromGoogle.user.photoURL)
+            console.log(data)
             if(res.ok){
                 dispatch(signInSuccess(data));
                 navigate('/')
