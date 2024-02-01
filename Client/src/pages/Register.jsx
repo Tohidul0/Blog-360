@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {  Link, useNavigate, } from 'react-router-dom';
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
+import GoogleAuth from '../components/GoogleAuth';
 
 function Register(props) {
     const [formData, setFormData] = useState({});
@@ -80,7 +81,7 @@ function Register(props) {
                     
                     onBlur={hendleChange}
                     />
-                <Button type="submit" className='mt-5' disabled={loading} >
+                <Button type="submit" className='mt-5 mb-5 w-full' disabled={loading} >
                     {
                       loading ? (
                         <>
@@ -92,6 +93,7 @@ function Register(props) {
                         "Sign Up"
                     }
                 </Button>
+                <GoogleAuth></GoogleAuth>
 
             </form>
             <p className='text-sm mt-2'>Already have an account?

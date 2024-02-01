@@ -11,7 +11,7 @@ export const signUp = async (req, res, next) => {
    }
     //    hashing passworad with bycriptjs----------------------------
    const hashpasswoard =bcryptjs.hashSync(passwoard,10);
-   const newUser = User(
+   const newUser = new User(
     {
         username,
         email,
@@ -50,6 +50,46 @@ export const signIn = async (req, res, next) => {
       const {passwoard : pass, ...rest} = validUser._doc;
       const token = jwt.sign({id : validUser._id}, process.env.JWT_SECRET)
       res.status(200).cookie('access token', token,{httpOnly : true}).json(rest);
+   }
+   catch(err){
+      return next(err);
+   }
+
+
+
+}
+
+
+
+export const google = async (req, res, next) => {
+   const { name, email, photoUrl  } = req.body;
+   try{
+
+      const validUser = await User.findOne({email});
+      if(validUser){
+         // remove password from user for frontend sequrity--------------------------------
+      const {passwoard : pass, ...rest} = validUser._doc;
+      const token = jwt.sign({id : validUser._id}, process.env.JWT_SECRET)
+      res.status(200).cookie('access token', token,{httpOnly : true}).json(rest);
+      }
+      else{
+         const generatePass = Math.random().toString(36).slice(-8);
+         const hashpasswoard = bcryptjs.compareSync(generatePass,10);
+         const newUser = new User(
+            {
+                username : name,
+                email,
+                passwoard : hashpasswoard,
+                profilePicture : photoUrl
+            }
+           );
+           await newUser.save();
+           // remove password from user for frontend sequrity--------------------------------
+         const {passwoard : pass, ...rest} = newUser._doc;
+         const token = jwt.sign({id : newUser._id}, process.env.JWT_SECRET)
+         res.status(200)
+         .cookie('access token', token,{httpOnly : true}).json(rest);
+      }   
    }
    catch(err){
       return next(err);

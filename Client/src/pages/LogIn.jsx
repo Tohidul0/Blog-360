@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import {useDispatch, useSelector} from 'react-redux';
 import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice';
+import GoogleAuth from '../components/GoogleAuth';
 
 function LogIn(props) {
     const [formData, setFormData] = useState({});
@@ -82,7 +83,7 @@ function LogIn(props) {
                     id='passwoard'
                     onBlur={hendleChange}
                     />
-                <Button type="submit" className='mt-5' disabled={loading} >
+                <Button type="submit" className='mt-5 mb-5 w-full' disabled={loading} >
                     {
                       loading ? (
                         <>
@@ -94,6 +95,7 @@ function LogIn(props) {
                         "Log In"
                     }
                 </Button>
+                <GoogleAuth></GoogleAuth>
 
             </form>
             <p className='text-sm mt-2'>don't have an account?

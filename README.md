@@ -11,3 +11,5 @@ npm i cors
 npm i jsonwebtoken
 npm install @reduxjs/toolkit react-redux
 npm i redux-persist
+npm install react-icons
+npm install firebase
