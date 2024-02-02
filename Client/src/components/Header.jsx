@@ -3,10 +3,13 @@ import React from 'react';
 import {  Link } from 'react-router-dom';
 import {AiOutlineSearch} from 'react-icons/ai'
 import {FaMoon} from 'react-icons/fa'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from '../redux/theme/theme';
 
 function Header(props) {
+    const dispatch = useDispatch(state =>state.theme);
     const {currentUser} = useSelector(state => state.user);
+    const {theme} = useSelector(state => state.theme);
     return (
         <Navbar className='border-b-2  px-6'>
             <Link to='/' className='white-space: nowrap text-sm sm:text-xl font-semibold'>
@@ -37,12 +40,9 @@ function Header(props) {
                 </Navbar.Collapse>
                 
             <div className='flex gap-2'>
-                <Button className='  sm:inline'  color='gray' pill >
+                <Button className='  sm:inline'  color='gray' pill  onClick={() => dispatch(toggleTheme())}>
                     <FaMoon/>
                 </Button>
-                {
-                     console.log(currentUser)
-                }
                 {
                    
                    currentUser ? (
