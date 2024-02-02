@@ -2,7 +2,7 @@ import { Avatar, Button, Dropdown, DropdownHeader, DropdownItem, Navbar, TextInp
 import React from 'react';
 import {  Link } from 'react-router-dom';
 import {AiOutlineSearch} from 'react-icons/ai'
-import {FaMoon} from 'react-icons/fa'
+import {FaMoon, FaSun} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../redux/theme/theme';
 
@@ -41,7 +41,7 @@ function Header(props) {
                 
             <div className='flex gap-2'>
                 <Button className='  sm:inline'  color='gray' pill  onClick={() => dispatch(toggleTheme())}>
-                    <FaMoon/>
+                    { theme === 'light' ? <FaMoon/> : <FaSun/>}
                 </Button>
                 {
                    
