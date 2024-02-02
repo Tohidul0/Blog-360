@@ -1,10 +1,12 @@
-import { Button, Navbar, TextInput } from 'flowbite-react';
+import { Avatar, Button, Dropdown, DropdownHeader, DropdownItem, Navbar, TextInput } from 'flowbite-react';
 import React from 'react';
 import {  Link } from 'react-router-dom';
 import {AiOutlineSearch} from 'react-icons/ai'
 import {FaMoon} from 'react-icons/fa'
+import { useSelector } from 'react-redux';
 
 function Header(props) {
+    const {currentUser} = useSelector(state => state.user);
     return (
         <Navbar className='border-b-2  px-6'>
             <Link to='/' className='white-space: nowrap text-sm sm:text-xl font-semibold'>
@@ -38,12 +40,42 @@ function Header(props) {
                 <Button className='  sm:inline'  color='gray' pill >
                     <FaMoon/>
                 </Button>
-                <Link to="/Login">
-                    <button  className="bg-gradient-to-r hover:opacity-80 from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Log In</button>
-                </Link>
-                <Link to="/register">
-                    <button  className="bg-gradient-to-r hover:opacity-80 from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Sign Up</button>
-                </Link>
+                {
+                     console.log(currentUser)
+                }
+                {
+                   
+                   currentUser ? (
+                    <Dropdown inline
+                    arrowIcon={false}
+                    label={
+                        <Avatar alt='User' img={currentUser.profilePicture} rounded />
+                    }
+                    >
+                    <DropdownHeader>
+                        <span className='block text-sm font-bold'>{currentUser.username}</span>
+                        <span className='block text-medium font-semibold'>{currentUser.email}</span>
+                    </DropdownHeader>
+                    <DropdownItem>
+                        <Link to="/dashboard">Profile</Link>
+                    </DropdownItem>
+                    <DropdownItem>
+                        <Link className='font-semibold' to="/dashboard">Sign Out</Link>
+                    </DropdownItem>
+                    </Dropdown>
+                    
+                   ) : (
+                    <> 
+                    <Link to="/Login">
+                        <button  className="bg-gradient-to-r hover:opacity-80 from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Log In</button>
+                    </Link>
+                    <Link to="/register">
+                        <button  className="bg-gradient-to-r hover:opacity-80 from-blue-500 to-green-500 text-white font-bold py-2 px-4 rounded">Sign Up</button>
+                    </Link>
+                    </>
+                    )
+                    
+                }
                
                 <Navbar.Toggle/>
             </div>
