@@ -7,6 +7,7 @@ import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import Header from './components/Header';
 import Footercompo from './pages/Footercompo';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
  
@@ -17,7 +18,11 @@ function App() {
          <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/about' element={<About></About>}></Route>
-            <Route path='/dashboard' element={<Dashborad></Dashborad>}></Route>
+            <Route element={<PrivateRoute/>}>
+              
+              <Route path='/dashboard' element={<Dashborad></Dashborad>}></Route>
+           
+            </Route>
             <Route path='/projects' element={<Projects></Projects>}></Route>
             <Route path='/LogIn' element={<LogIn></LogIn>}></Route>
             <Route path='/register' element={<Register></Register>}></Route>
