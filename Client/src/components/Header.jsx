@@ -60,7 +60,7 @@ function Header(props) {
                         <Link to="/dashboard">Profile</Link>
                     </DropdownItem>
                     <DropdownItem>
-                        <Link className='font-semibold' to="/dashboard">Sign Out</Link>
+                        <Link className='font-semibold' >Sign Out</Link>
                     </DropdownItem>
                     </Dropdown>
                     
