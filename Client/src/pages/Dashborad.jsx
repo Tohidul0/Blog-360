@@ -14,15 +14,15 @@ function Dashborad(props) {
         setTab(urltabs)
     }, [location.search])
     return (
-        <div className='min-h-screen flex flex-col md:flex-row w-full  bg-red-600' >
+        <div className='min-h-screen flex flex-col md:flex-row w-full ' >
            {/* left sidebar */}
-           <div className='h-full'>
+           <div className='h-full '>
            <DashSidebar></DashSidebar>
            </div>
 
 
            {/* right side profile */}
-           <div className='md:w-56 pl-2'>
+           <div className=' w-full pl-2'>
            {tab ==='profile' && <DashProfile></DashProfile>}
            </div>
         </div>
