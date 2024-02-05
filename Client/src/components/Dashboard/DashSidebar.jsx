@@ -17,11 +17,11 @@ function DashSidebar(props) {
        <Sidebar className='w-full md:w-56' >
         <Sidebar.Items className='h-full' >
             <Sidebar.ItemGroup>
-                <Link to='/dashboard?tab=profile'>
+                <Link to='/dashboard?tab=profile 'component="div" >
                 <Sidebar.Item active={tab ==='profile'} label={"User"} icon={HiUser} labelColor="dark">
                     profile
                 </Sidebar.Item>
-                </Link>
+                </Link >
                 <Sidebar.Item className="cursor-pointer">
                     Sign Out
                 </Sidebar.Item>

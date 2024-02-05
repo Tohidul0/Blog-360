@@ -14,7 +14,7 @@ function Dashborad(props) {
         setTab(urltabs)
     }, [location.search])
     return (
-        <div className='min-h-screen flex flex-col md:flex-row w-full ' >
+        <div className='min-h-screen flex flex-col md:flex-row  ' >
            {/* left sidebar */}
            <div className='h-full '>
            <DashSidebar></DashSidebar>
