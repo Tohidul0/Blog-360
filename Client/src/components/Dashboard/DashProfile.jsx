@@ -1,7 +1,7 @@
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFailure, updateStart, updateSuccess } from '../../redux/user/userSlice';
+import { deleteSucces, updateFailure, updateStart, updateSuccess } from '../../redux/user/userSlice';
 
 function DashProfile(props) {
     const {currentUser, error:errormessage} = useSelector(state => state.user)
@@ -54,11 +54,7 @@ function DashProfile(props) {
 
     }
 
-    // window.confirm(
-    //     function gootoDelete  (){
-    //         console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyah")
-    //     }
-    // )
+   
     const gotoDelete =  async () =>{
         // alert("are you sure delete Acount?");
         const yesDelete = window.confirm("are you sure delete Acount?");
@@ -72,10 +68,9 @@ function DashProfile(props) {
              if(!res.ok){
                 dispatch(updateFailure(data.maessage))
              }
-        //     else{
-        //         alert("update Successful")
-        //         dispatch(updateSuccess(data));
-        //   }
+            else{
+                dispatch(deleteSucces());
+          }
         }
     }
 

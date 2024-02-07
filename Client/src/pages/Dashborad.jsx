@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {useLocation} from 'react-router-dom'
+import {Route, useLocation} from 'react-router-dom'
 import DashSidebar from '../components/Dashboard/DashSidebar';
 import DashProfile from '../components/Dashboard/DashProfile';
+import PrivateRoute from './../components/PrivateRoute';
+
 
 function Dashborad(props) {
     const location = useLocation();
@@ -22,9 +24,12 @@ function Dashborad(props) {
 
 
            {/* right side profile */}
+          
            <div className=' w-full pl-2'>
            {tab ==='profile' && <DashProfile></DashProfile>}
            </div>
+           
+           
         </div>
     );
 }
