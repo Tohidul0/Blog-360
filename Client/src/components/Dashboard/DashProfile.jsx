@@ -53,6 +53,41 @@ function DashProfile(props) {
         }
 
     }
+
+    // window.confirm(
+    //     function gootoDelete  (){
+    //         console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyah")
+    //     }
+    // )
+    const gotoDelete =  async () =>{
+        // alert("are you sure delete Acount?");
+        const yesDelete = window.confirm("are you sure delete Acount?");
+        if(yesDelete){
+            const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, { 
+            method: "DELETE",
+            headers: {'Content-Type' : 'application/json'},
+            });
+
+            const data = await res.json();
+             if(!res.ok){
+                dispatch(updateFailure(data.maessage))
+             }
+        //     else{
+        //         alert("update Successful")
+        //         dispatch(updateSuccess(data));
+        //   }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     return (
         <div>
            <h1 className='text-center mt-20 text-3xl font-bold'> Profile</h1>
@@ -94,7 +129,7 @@ function DashProfile(props) {
                 </Button>
                 
                 <div className='flex justify-between'>
-                <h2 className='text-red-500 cursor-pointer'>Delete Account</h2>
+                <h2 className='text-red-500 cursor-pointer' onClick={gotoDelete}>Delete Account</h2>
                 <h2 className='text-red-500 cursor-pointer'>Sign Out</h2>
                 </div>
                 <div>

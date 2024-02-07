@@ -59,3 +59,20 @@ import  bcryptjs from 'bcryptjs'
          next(error);
        }
  }
+
+ export const deleteUser = async  (req, res, next) =>{
+  const _id =req.params.id;
+    try{
+      const validUser = await User.findOne({_id});
+      if(validUser){
+      await User.findByIdAndDelete(req.params.id)
+      res.status(200).json("User deleted")
+      }
+      else{
+        return next(errorHendeler(404, 'user not found'))
+      }
+    }
+    catch(err){
+      next(errorHendeler(err))
+    }
+ }
