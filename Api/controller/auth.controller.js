@@ -49,7 +49,8 @@ export const signIn = async (req, res, next) => {
       // remove password from user for frontend sequrity--------------------------------
       const {passwoard : pass, ...rest} = validUser._doc;
       const token = jwt.sign({id : validUser._id}, process.env.JWT_SECRET)
-      res.status(200).cookie('access token', token,{httpOnly : true}).json(rest);
+      res.status(200).cookie('access_token', token,{httpOnly : true}).json(rest);
+      
    }
    catch(err){
       return next(err);
@@ -70,7 +71,8 @@ export const google = async (req, res, next) => {
          // remove password from user for frontend sequrity--------------------------------
       const {passwoard : pass, ...rest} = validUser._doc;
       const token = jwt.sign({id : validUser._id}, process.env.JWT_SECRET)
-      res.status(200).cookie('access token', token,{httpOnly : true}).json(rest);
+      res.status(200).cookie('access_token', token,{httpOnly : true}).json(rest);
+      console.log(token);
       }
       else{
          const generatePass = Math.random().toString(36).slice(-8);
@@ -88,7 +90,7 @@ export const google = async (req, res, next) => {
          const {passwoard : pass, ...rest} = newUser._doc;
          const token = jwt.sign({id : newUser._id}, process.env.JWT_SECRET)
          res.status(200)
-         .cookie('access token', token,{httpOnly : true}).json(rest);
+         .cookie('access_token', token,{httpOnly : true}).json(rest);
       }   
    }
    catch(err){

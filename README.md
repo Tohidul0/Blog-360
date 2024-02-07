@@ -13,3 +13,4 @@ npm install @reduxjs/toolkit react-redux
 npm i redux-persist
 npm install react-icons
 npm install firebase
+npm i cookie-parser

@@ -52,7 +52,7 @@ function LogIn(props) {
         }
         catch(err){
             
-            dispatch.signInFailure(err.maessage);
+            dispatch.signInFailure(err.meassage);
         }
     }
 

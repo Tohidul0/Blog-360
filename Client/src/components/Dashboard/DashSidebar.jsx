@@ -17,8 +17,8 @@ function DashSidebar(props) {
        <Sidebar className='w-full md:w-56' >
         <Sidebar.Items className='h-full' >
             <Sidebar.ItemGroup>
-                <Link to='/dashboard?tab=profile 'component="div" >
-                <Sidebar.Item active={tab ==='profile'} label={"User"} icon={HiUser} labelColor="dark">
+                <Link to='/dashboard?tab=profile ' >
+                <Sidebar.Item active={tab ==='profile'} label={"User"} icon={HiUser} labelColor="dark" as='div'>
                     profile
                 </Sidebar.Item>
                 </Link >
