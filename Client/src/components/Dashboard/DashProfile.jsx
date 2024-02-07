@@ -77,6 +77,18 @@ function DashProfile(props) {
 
 
 
+    const gotoSignOut =  async () =>{
+        // alert("are you sure delete Acount?");
+        const yesDelete = window.confirm("are you sure SignOut?");
+        if(yesDelete){
+            dispatch(deleteSucces());
+          }
+        }
+    
+
+
+
+
 
 
 
@@ -125,7 +137,7 @@ function DashProfile(props) {
                 
                 <div className='flex justify-between'>
                 <h2 className='text-red-500 cursor-pointer' onClick={gotoDelete}>Delete Account</h2>
-                <h2 className='text-red-500 cursor-pointer'>Sign Out</h2>
+                <h2 className='text-red-500 cursor-pointer' onClick={gotoSignOut}>Sign Out</h2>
                 </div>
                 <div>
                 {errormessage && (
