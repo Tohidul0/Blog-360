@@ -81,7 +81,20 @@ function DashProfile(props) {
         // alert("are you sure delete Acount?");
         const yesDelete = window.confirm("are you sure SignOut?");
         if(yesDelete){
-            dispatch(deleteSucces());
+            const res = await fetch("http://localhost:3000/api/user/signOut", { 
+            method: "POST",
+            headers: {'Content-Type' : 'application/json'},
+            });
+
+            const data = await res.json();
+             if(!res.ok){
+                dispatch(updateFailure(data.maessage))
+             }
+            else{
+                dispatch(deleteSucces());
+          }
+
+            
           }
         }
     

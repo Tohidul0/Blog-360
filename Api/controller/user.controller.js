@@ -76,3 +76,14 @@ import  bcryptjs from 'bcryptjs'
       next(errorHendeler(err))
     }
  }
+
+
+
+ export const signOut = async (req, res, next) =>{
+    try{
+      res.clearCookie('access_token').status(200).json('sign Out Successful')
+    }
+    catch(err){
+      next(errorHendeler(err))
+    }
+ }
