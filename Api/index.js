@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js'
+import postRouter from './routes/post.route.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 
@@ -36,11 +37,15 @@ app.listen(3000, ()=>{
 });
 
 
-// get API-----------------------------------------------
+// User API-----------------------------------------------
 app.use('/api/user' ,userRouter);
 
 // signUp ApI---------------------------------------
 app.use('/api', authRouter );
+
+
+// post Api---------------------------------
+app.use('/api/post', postRouter);
 
 
 
