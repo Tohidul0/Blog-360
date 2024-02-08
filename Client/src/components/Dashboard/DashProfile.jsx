@@ -78,7 +78,7 @@ function DashProfile(props) {
 
 
     const gotoSignOut =  async () =>{
-        // alert("are you sure delete Acount?");
+       
         const yesDelete = window.confirm("are you sure SignOut?");
         if(yesDelete){
             const res = await fetch("http://localhost:3000/api/user/signOut", { 

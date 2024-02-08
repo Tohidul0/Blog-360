@@ -5,11 +5,35 @@ import {AiOutlineSearch} from 'react-icons/ai'
 import {FaMoon, FaSun} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../redux/theme/theme';
+import { deleteSucces } from '../redux/user/userSlice';
 
 function Header(props) {
     const dispatch = useDispatch(state =>state.theme);
     const {currentUser} = useSelector(state => state.user);
     const {theme} = useSelector(state => state.theme);
+
+
+
+    const gotoSignOut =  async () =>{
+       
+        const yesDelete = window.confirm("are you sure SignOut?");
+        if(yesDelete){
+            const res = await fetch("http://localhost:3000/api/user/signOut", { 
+            method: "POST",
+            headers: {'Content-Type' : 'application/json'},
+            });
+
+            const data = await res.json();
+             if(!res.ok){
+                dispatch(updateFailure(data.maessage))
+             }
+            else{
+                dispatch(deleteSucces());
+          }
+
+            
+          }
+        }
     return (
         <Navbar className='border-b-2  px-6'>
             <Link to='/' className='white-space: nowrap text-sm sm:text-xl font-semibold'>
@@ -60,7 +84,7 @@ function Header(props) {
                         <Link to="/dashboard">Profile</Link>
                     </DropdownItem>
                     <DropdownItem>
-                        <Link className='font-semibold' >Sign Out</Link>
+                        <Link onClick={gotoSignOut} className='font-semibold' >Sign Out</Link>
                     </DropdownItem>
                     </Dropdown>
                     
