@@ -2,6 +2,7 @@ import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteSucces, updateFailure, updateStart, updateSuccess } from '../../redux/user/userSlice';
+import { Link } from 'react-router-dom';
 
 function DashProfile(props) {
     const {currentUser, error:errormessage} = useSelector(state => state.user)
@@ -153,11 +154,13 @@ function DashProfile(props) {
                 
                 {
                     currentUser.isAdmin && (
-                        <Button type="button" className='mt-5 mb-5 w-full bg-gradient-to-r from-blue-500 to-green-500' >
+                       <Link to="/create-new-post">
+                                <Button type="button" className='mt-5 mb-5 w-full bg-gradient-to-r from-blue-500 to-green-500' >
                     
-                        post to dashboard
-                    
-                       </Button>
+                                    post to dashboard
+                
+                                </Button>
+                       </Link>
                     )
                 }
                 <div className='flex justify-between'>
