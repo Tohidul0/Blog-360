@@ -26,7 +26,7 @@ function Register(props) {
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify(formData)
                 
-            });
+            },{withCredentials : true},);
            
             const data = await res.json();
             if(data.success === "false"){

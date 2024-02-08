@@ -36,6 +36,7 @@ function DashProfile(props) {
             const res = await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`,{
             method : 'PUT',
             headers: {'Content-Type' : 'application/json'},
+            credentials: 'include',
             body : JSON.stringify(formdata)
           });
 
@@ -62,6 +63,7 @@ function DashProfile(props) {
             const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, { 
             method: "DELETE",
             headers: {'Content-Type' : 'application/json'},
+            credentials: 'include',
             });
 
             const data = await res.json();
@@ -84,6 +86,7 @@ function DashProfile(props) {
             const res = await fetch("http://localhost:3000/api/user/signOut", { 
             method: "POST",
             headers: {'Content-Type' : 'application/json'},
+            credentials: 'include',
             });
 
             const data = await res.json();
@@ -148,6 +151,15 @@ function DashProfile(props) {
                     
                 </Button>
                 
+                {
+                    currentUser.isAdmin && (
+                        <Button type="button" className='mt-5 mb-5 w-full bg-gradient-to-r from-blue-500 to-green-500' >
+                    
+                        post to dashboard
+                    
+                       </Button>
+                    )
+                }
                 <div className='flex justify-between'>
                 <h2 className='text-red-500 cursor-pointer' onClick={gotoDelete}>Delete Account</h2>
                 <h2 className='text-red-500 cursor-pointer' onClick={gotoSignOut}>Sign Out</h2>

@@ -1,11 +1,12 @@
 import { Sidebar, Label } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 import {HiUser} from 'react-icons/hi'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { deleteSucces } from '../../redux/user/userSlice';
 
 function DashSidebar(props) {
+    const {currentUser} = useSelector(state => state.user)
    const dispatch = useDispatch()
     const location = useLocation();
     //console.log(location)
@@ -47,7 +48,7 @@ function DashSidebar(props) {
         <Sidebar.Items className='h-full' >
             <Sidebar.ItemGroup>
                 <Link to='/dashboard?tab=profile ' >
-                <Sidebar.Item active={tab ==='profile'} label={"User"} icon={HiUser} labelColor="dark" as='div'>
+                <Sidebar.Item active={tab ==='profile'} label={currentUser.isAdmin ?"Admin" :"User"} icon={HiUser} labelColor="dark" as='div'>
                     profile
                 </Sidebar.Item>
                 </Link >

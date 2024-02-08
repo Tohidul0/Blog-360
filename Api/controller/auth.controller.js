@@ -48,7 +48,7 @@ export const signIn = async (req, res, next) => {
 
       // remove password from user for frontend sequrity--------------------------------
       const {passwoard : pass, ...rest} = validUser._doc;
-      const token = jwt.sign({id : validUser._id}, process.env.JWT_SECRET)
+      const token = jwt.sign({id : validUser._id , isAdmin: validUser.isAdmin}, process.env.JWT_SECRET)
       res.status(200).cookie('access_token', token,{httpOnly : true}).json(rest);
       
    }
@@ -70,7 +70,7 @@ export const google = async (req, res, next) => {
       if(validUser){
          // remove password from user for frontend sequrity--------------------------------
       const {passwoard : pass, ...rest} = validUser._doc;
-      const token = jwt.sign({id : validUser._id}, process.env.JWT_SECRET)
+      const token = jwt.sign({id : validUser._id, isAdmin: validUser.isAdmin}, process.env.JWT_SECRET)
       res.status(200).cookie('access_token', token,{httpOnly : true}).json(rest);
       console.log(token);
       }
@@ -88,7 +88,7 @@ export const google = async (req, res, next) => {
            await newUser.save();
            // remove password from user for frontend sequrity--------------------------------
          const {passwoard : pass, ...rest} = newUser._doc;
-         const token = jwt.sign({id : newUser._id}, process.env.JWT_SECRET)
+         const token = jwt.sign({id : newUser._id, isAdmin: validUser.isAdmin}, process.env.JWT_SECRET)
          res.status(200)
          .cookie('access_token', token,{httpOnly : true}).json(rest);
       }   
