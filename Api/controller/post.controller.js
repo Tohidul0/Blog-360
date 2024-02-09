@@ -16,7 +16,7 @@ export const createPost = async (req, res, next) =>{
   });
   try{
     await newPost.save()
-    res.json('post done succesfully')
+    res.json(newPost)
   }
   catch(err){
     next(errorHendeler(err));
