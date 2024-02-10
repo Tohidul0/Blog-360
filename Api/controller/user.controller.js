@@ -87,3 +87,38 @@ import  bcryptjs from 'bcryptjs'
       next(errorHendeler(err))
     }
  }
+
+
+
+ export const alluser = async (req, res, next) =>{
+  try{
+    const startIndex = parseInt(req.query.startIndex) || 0;
+    const limit = parseInt(req.query.limit) || 9;
+    const sortData = req.query.order ==='asc' ? 1 : -1;
+    const users = await User.find().sort({updateAt : sortData}).skip(startIndex).limit(limit);
+    
+    
+    const totalpost = await User.countDocuments();
+    const now = new Date();
+    const oneMonthAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 1,
+      now.getDate()
+    );
+    
+    
+    const lastMonthPost = await User.countDocuments({
+      createdAt :{$gte : oneMonthAgo}
+    });
+
+    res.status(200).json({
+      users,
+      totalpost,
+      lastMonthPost
+    });
+
+  }
+  catch(err){
+    next(err)
+  }
+}
