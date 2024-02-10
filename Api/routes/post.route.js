@@ -1,5 +1,5 @@
 import  express  from "express";
-import { createPost } from "../controller/post.controller.js";
+import { allpost, createPost } from "../controller/post.controller.js";
 import { varifyToken } from "../utils/validUser.js";
 
 
@@ -8,5 +8,6 @@ const router = express.Router();
 
 
 router.post('/create',varifyToken, createPost) ;
+router.get('/allposts', allpost)
 
 export default router;

@@ -8,6 +8,9 @@ const postSchema = new mongoose.Schema({
 
 
     },
+    catagory: {
+        type : String
+    },
     content : {
         type : String
     },
