@@ -3,6 +3,7 @@ import {Route, useLocation} from 'react-router-dom'
 import DashSidebar from '../components/Dashboard/DashSidebar';
 import DashProfile from '../components/Dashboard/DashProfile';
 import PrivateRoute from './../components/PrivateRoute';
+import Allposts from '../components/Allposts';
 
 
 function Dashborad(props) {
@@ -27,6 +28,7 @@ function Dashborad(props) {
           
            <div className=' w-full pl-2'>
            {tab ==='profile' && <DashProfile></DashProfile>}
+           {tab==='posts' && <Allposts></Allposts>}
            </div>
            
            

@@ -14,3 +14,4 @@ npm i redux-persist
 npm install react-icons
 npm install firebase
 npm i cookie-parser
+npm install --save-dev tailwind-scrollbar
