@@ -10,6 +10,6 @@ router.get('/' ,test);
 router.put('/update/:id', upadteUser)
 router.delete('/delete/:id', deleteUser);
 router.post('/signOut', signOut);
-router.get('/alluser',varifyToken, alluser);
+router.get('/alluser', varifyToken,  alluser);
 
 export default router;

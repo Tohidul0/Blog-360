@@ -2,17 +2,26 @@ import { Table, TableBody, TableCell, TableRow } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-function Allposts(props) {
+
+function Alluser(props) {
     const {currentUser} = useSelector(state => state.user)
-    const [userposts, setUserposts] = useState({})
+    const [users, setUsers] = useState({})
     useEffect(() =>{
         const laodposts = async () =>{
+            const accessToken = 'access_token';
               try{
-                const res = await fetch('http://localhost:3000/api/post/allposts')
+                const res = await fetch('http://localhost:3000/api/user/alluser', {
+                    method: 'GET',
+                    headers: {
+                      'Authorization': `Bearer ${accessToken}`,
+                      'Content-Type': 'application/json',
+                    },
+                    credentials: 'include', // Include credentials (cookies) for cross-origin requests
+                  });
               const data = await res.json()
-              setUserposts(data.posts); 
-              console.log(userposts)
-              console.log(data.posts)
+              setUsers(data.users); 
+              console.log(users)
+              console.log(data)
               } 
               catch (err){
                 console.log(err);
@@ -20,28 +29,25 @@ function Allposts(props) {
             
         }
         laodposts();
-    }, [currentUser._id])
+    }, [])
 
     return (
-        <div className=' table-auto overflow-x-scroll md:mx-auto p-5 '>
-           {currentUser.isAdmin && userposts.length >0? (
-           
-                <Table hoverable className='shadow-md overflow-scroll'>
+        <div className=' table-auto overflow-x-scroll md:mx-auto p-5'>
+           {currentUser.isAdmin && users.length> 0? (
+            <>
+                <Table hoverable className='shadow-md'>
                     <Table.Head>
                         <Table.HeadCell>
                             Updated Date
                         </Table.HeadCell>
                         <Table.HeadCell>
-                            Post Title
+                            User Id
                         </Table.HeadCell>
                         <Table.HeadCell>
-                            Post Category
+                            User Email
                         </Table.HeadCell>
                         <Table.HeadCell>
-                           Post image
-                        </Table.HeadCell>
-                        <Table.HeadCell>
-                           Post content
+                           Profile Picture
                         </Table.HeadCell>
                         <Table.HeadCell>
                            Delete
@@ -51,14 +57,13 @@ function Allposts(props) {
                         </Table.HeadCell>
                     </Table.Head>
                      { 
-                     userposts.map((post) => (
+                     users.map((post) => (
                         <TableBody key={post._id}> 
                             <TableRow>
                                 <TableCell>{new Date(post.updatedAt).toLocaleDateString()}</TableCell>
-                                <TableCell className='w-12 h-10'>{post.title}</TableCell>
-                                <TableCell className='w-12 h-10'>{post.catagory}</TableCell>
-                                <TableCell><img className='w-20 h-10' src={post.image}></img></TableCell>
-                                <TableCell>{post.content}</TableCell>
+                                <TableCell>{post._id}</TableCell>
+                                <TableCell>{post.email}</TableCell>
+                                <TableCell><img src={post.profilePicture}></img></TableCell>
                                 <TableCell><span className='text-red-600 hover:underline cursor-pointer'>Delete</span></TableCell>
                                 <TableCell><span className='text-red-600 hover:underline cursor-pointer'>Edit</span></TableCell>
                             </TableRow>
@@ -67,7 +72,7 @@ function Allposts(props) {
                        
                    
                 </Table>
-           
+            </>
            ) : (
 
             <p> there is no post</p>
@@ -76,4 +81,4 @@ function Allposts(props) {
     );
 }
 
-export default Allposts;
+export default Alluser;

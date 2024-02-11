@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { deleteSucces } from '../../redux/user/userSlice';
 import { BsFillFileEarmarkPostFill } from "react-icons/bs";
 import { LiaSignOutAltSolid } from "react-icons/lia";
+import { TbUsersGroup } from "react-icons/tb";
 
 function DashSidebar(props) {
     const {currentUser} = useSelector(state => state.user)
@@ -56,11 +57,18 @@ function DashSidebar(props) {
                 </Link >
                {
                 currentUser.isAdmin && (
+                    <>
                     <Link to='/dashboard?tab=posts ' >
                     <Sidebar.Item active={tab ==='posts'}  icon={ BsFillFileEarmarkPostFill} labelColor="dark" as='div'>
                       All posts  
                     </Sidebar.Item>
                     </Link >
+                    <Link to='/dashboard?tab=users ' >
+                    <Sidebar.Item active={tab ==='user'}  icon={TbUsersGroup} labelColor="dark" as='div'>
+                      All User  
+                    </Sidebar.Item>
+                    </Link >
+                    </>
                 )
                }
                 <Sidebar.Item onClick={gotoSignOut} className="cursor-pointer" icon={ LiaSignOutAltSolid }>

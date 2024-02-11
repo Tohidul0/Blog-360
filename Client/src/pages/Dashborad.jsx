@@ -4,6 +4,7 @@ import DashSidebar from '../components/Dashboard/DashSidebar';
 import DashProfile from '../components/Dashboard/DashProfile';
 import PrivateRoute from './../components/PrivateRoute';
 import Allposts from '../components/Allposts';
+import Alluser from '../components/Alluser';
 
 
 function Dashborad(props) {
@@ -17,7 +18,7 @@ function Dashborad(props) {
         setTab(urltabs)
     }, [location.search])
     return (
-        <div className='min-h-screen flex flex-col md:flex-row  ' >
+        <div className='min-h-screen flex flex-col md:flex-row w-full ' >
            {/* left sidebar */}
            <div className='h-full '>
            <DashSidebar></DashSidebar>
@@ -29,6 +30,7 @@ function Dashborad(props) {
            <div className=' w-full pl-2'>
            {tab ==='profile' && <DashProfile></DashProfile>}
            {tab==='posts' && <Allposts></Allposts>}
+           {tab==='users' && <Alluser></Alluser>}
            </div>
            
            
