@@ -10,6 +10,7 @@ import Footercompo from './pages/Footercompo';
 import PrivateRoute from './components/PrivateRoute';
 import AdminPrivateRoute from './components/adminPrivateRoute';
 import Create_new_post from './pages/Create_new_post';
+import PostPage from './pages/PostPage';
 
 function App() {
  
@@ -33,6 +34,7 @@ function App() {
             <Route path='/projects' element={<Projects></Projects>}></Route>
             <Route path='/LogIn' element={<LogIn></LogIn>}></Route>
             <Route path='/register' element={<Register></Register>}></Route>
+            <Route path='/post/:postslug' element={<PostPage></PostPage>}></Route>
         </Routes>
         <Footercompo></Footercompo>
       </BrowserRouter>

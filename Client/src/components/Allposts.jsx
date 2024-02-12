@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableRow } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Allposts(props) {
     const {currentUser} = useSelector(state => state.user)
@@ -57,7 +58,11 @@ function Allposts(props) {
                                 <TableCell>{new Date(post.updatedAt).toLocaleDateString()}</TableCell>
                                 <TableCell className='w-12 h-10'>{post.title}</TableCell>
                                 <TableCell className='w-12 h-10'>{post.catagory}</TableCell>
-                                <TableCell><img className='w-20 h-10' src={post.image}></img></TableCell>
+                                <TableCell>
+                                    <Link to={`/post/${post.slug}`}>
+                                        <img className='w-20 h-10' src={post.image}></img>
+                                    </Link>
+                                </TableCell>
                                 <TableCell>{post.content}</TableCell>
                                 <TableCell><span className='text-red-600 hover:underline cursor-pointer'>Delete</span></TableCell>
                                 <TableCell><span className='text-red-600 hover:underline cursor-pointer'>Edit</span></TableCell>
