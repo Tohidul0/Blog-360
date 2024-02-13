@@ -1,6 +1,7 @@
 import { Button, Spinner } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import CallCompo from '../components/CallCompo';
 
 function PostPage(props) {
     const [err, setErr] = useState(null)
@@ -24,22 +25,23 @@ function PostPage(props) {
         loadPostSlug();
     }, [postslug])
     return (
-        <div  className='justify-center flex'>
+        <div  className='justify-center flex mb-10'>
         {
             post ? (
                 <div className='min-h-screen'>
                     <div className='justify-center'>
                         <h1 className='text-center text-5xl font-serif pt-5'>{post.title}</h1>
-                        <Button pill className='text-center text-xs mt-3 mx-auto  '>{post.catagory}</Button>
+                        <Button color='gray' pill className='text-center text-xs mt-3 mx-auto  '>{post.catagory}</Button>
                     </div>
-                    <img className='w-3/5 mx-auto pt-5 rounded-lg overflow-hidden' src={post.image}></img>
-                    <div className='  border-2 w-3/5 mx-auto rounded my-5 p-5'> 
-                        <p className='text-2xl'>{post.content}</p>
+                    <img className='md:w-3/5 sm:w-4/5 mx-auto pt-5 rounded-lg overflow-hidden' src={post.image}></img>
+                    <div className=' border-y-2 md:w-3/5 sm:w-4/5 mx-auto rounded my-5 p-5'> 
+                        <p className=''>{post.content}</p>
                     </div>
+                    <CallCompo></CallCompo>
                 </div>
             ) : (
-                <div className='min-h-screen justify-center'>
-                     <Spinner className='size-1/6'></Spinner>
+                <div className='min-h-screen justify-center align-middle my-auto'>
+                     <Spinner className='size-2xl'></Spinner>
                  </div>
             )
         }
