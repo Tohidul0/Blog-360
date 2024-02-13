@@ -1,9 +1,11 @@
-import { Button, Spinner } from 'flowbite-react';
+import { Button, Spinner, Textarea } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CallCompo from '../components/CallCompo';
+import { useSelector } from 'react-redux';
 
 function PostPage(props) {
+    const {currentUser} = useSelector(state => state.user)
     const [err, setErr] = useState(null)
     const {postslug} = useParams();
     const [post, setPost] =useState(null)
@@ -38,6 +40,16 @@ function PostPage(props) {
                         <p className=''>{post.content}</p>
                     </div>
                     <CallCompo></CallCompo>
+                    {currentUser ? (
+                        <div className='md:w-3/5 sm:w-4/5 mx-auto mt-5'>
+                            <p>Write a comment</p>
+                            <Textarea rows={3} placeholder='commet here'></Textarea>
+                        </div>
+                    ) : (<div>
+                        <Link to='/LogIn'>
+                        <h2 className='text-xs text-center mt-2'>Write a comment you have to <span className=' text-teal-700 font-bold'>Sign in</span></h2>
+                        </Link>
+                    </div>) }
                 </div>
             ) : (
                 <div className='min-h-screen justify-center align-middle my-auto'>
