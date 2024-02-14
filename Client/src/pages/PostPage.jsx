@@ -5,6 +5,7 @@ import CallCompo from '../components/CallCompo';
 import { useSelector } from 'react-redux';
 
 function PostPage(props) {
+    const [comment, setComment] = useState({});
     const {currentUser} = useSelector(state => state.user)
     const [err, setErr] = useState(null)
     const {postslug} = useParams();
@@ -26,6 +27,36 @@ function PostPage(props) {
         }
         loadPostSlug();
     }, [postslug])
+
+    const goToComment = async(e) =>{
+        e.preventDefault();
+        setComment({
+            [e.target.id] : e.target.value,
+            postId : post._id,
+            userId : currentUser._id,
+        })
+    }
+
+    const saveComment = async (e) =>{
+        e.preventDefault(); 
+        if(!comment){
+            return;
+        }
+        else{
+            console.log(comment)
+            const res = await fetch('http://localhost:3000/api/comment/create',{
+                method: "POST",
+                headers: {'Content-Type' : 'application/json'},
+                credentials: 'include',
+                body: JSON.stringify(comment)
+                
+            });
+        }
+
+    }
+
+
+
     return (
         <div  className='justify-center flex mb-10'>
         {
@@ -43,7 +74,10 @@ function PostPage(props) {
                     {currentUser ? (
                         <div className='md:w-3/5 sm:w-4/5 mx-auto mt-5'>
                             <p>Write a comment</p>
-                            <Textarea rows={3} placeholder='commet here'></Textarea>
+                            <form onSubmit={saveComment}>
+                            <Textarea rows={3} id='content' placeholder='commet here' onBlur={goToComment}></Textarea>
+                            <Button color='grey' type='submit'  className='border-2 mt-2 bg-fuchsia-600'>comment</Button>
+                            </form>
                         </div>
                     ) : (<div>
                         <Link to='/LogIn'>
