@@ -24,3 +24,16 @@ export const allcomment = async (req, res, next) =>{
       return  next(errorHendeler(err))
     }
  }
+
+
+ export const getAllComment = async(req, res, next) =>{
+    try{
+      const allComment = await Comment.find({postId : req.params.postId}).sort({
+        createdAt : -1,
+      });
+      res.status(200).json(allComment);
+    }
+    catch(err){
+      next(err);
+    }
+ }

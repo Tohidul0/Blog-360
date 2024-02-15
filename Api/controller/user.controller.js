@@ -122,3 +122,16 @@ import  bcryptjs from 'bcryptjs'
     next(err)
   }
 }
+
+export const singleUser = async(req, res, next) =>{
+  try{
+    const user1 = await User.find({_id : req.params.user})
+    const user=user1[0];
+    const { passwoard, ...rest } = user._doc;
+   
+         res.status(200).json(rest);
+  }
+  catch(err){
+    next(err);
+  }
+}
