@@ -12,6 +12,7 @@ function PostPage(props) {
     const [err, setErr] = useState(null)
     const {postslug} = useParams();
     const [post, setPost] =useState(null)
+    
     console.log(postslug)
     useEffect(() => {
         const loadPostSlug = async() =>{
@@ -43,7 +44,7 @@ function PostPage(props) {
            }
         }
         loadComments();
-    },[post])
+    },[post, comment])
 
     const goToComment = async(e) =>{
         e.preventDefault();
@@ -73,6 +74,7 @@ function PostPage(props) {
             const data = await res.json()
             if(res.ok){
                 console.log(data);
+               setComment(data);
                 
             }
             }

@@ -19,7 +19,7 @@ function SingleComment(props) {
         getUser();
     }, [userId])
     return (
-        <div className='border shadow-2xl m-5'>
+        <div className='border-b shadow-2xl m-5 px-5 py-2 '>
            
                 {user && (<div className='flex align-middle items-center gap-2'>
                 <img className='rounded-full w-8 h-8' src={user.profilePicture}></img>
@@ -27,7 +27,7 @@ function SingleComment(props) {
                     
                     </div>)}
             
-            <h1 className='ps-14'>{content}</h1>
+            <h1 className='ps-14 op'>{content}</h1>
         </div>
     );
 }
