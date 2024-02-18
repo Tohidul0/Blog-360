@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
+import { BiSolidLike } from "react-icons/bi";
+
 function SingleComment(props) {
-    const {content, userId} =props.singleCom;
+    const {content, userId, likes, numberOfLikes} =props.singleCom;
+    const {hendleLikeComment} =props;
+   // console.log(props.singleCom)
     const [user, setUser] = useState({});
 
     useEffect(() =>{
@@ -27,7 +31,13 @@ function SingleComment(props) {
                     
                     </div>)}
             
-            <h1 className='ps-14 op'>{content}</h1>
+            <h1 className='ps-14 opacity-70'>{content}</h1>
+            < div className='ps-14 flex items-center gap-2  '>
+                <BiSolidLike  onClick={hendleLikeComment} className={`text-grey hover:text-teal-600 cursor-pointer  ${
+                    numberOfLikes > 0  && 'text-teal-600'
+                }`}  />
+                {likes.length > 0 &&(<p>{likes.length} like</p>)}
+            </div>
         </div>
     );
 }

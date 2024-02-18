@@ -86,6 +86,30 @@ function PostPage(props) {
 
     }
 
+   const  hendleLikeComment = async(commentId) =>{
+    console.log('weufhiodlkjdehd')
+    try{
+        const res = await fetch(`http://localhost:3000/api/comment/likeComment/${commentId}`,{
+                method: "PUT",
+                credentials: 'include',
+                
+            });
+
+            const data = await res.json()
+            if(res.ok){
+                
+                setComment(data); 
+            }
+            else{
+                console.log('eeeeeeerrrrooooor')
+            }
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+   }
+
 
 
     return (
@@ -116,7 +140,7 @@ function PostPage(props) {
                                 </div>
                                 <div>
                                  { allcomment ? (
-                                    <div> {allcomment.map(singleCom =>(<SingleComment singleCom={singleCom} key={singleCom._id}></SingleComment>))}</div>
+                                    <div> {allcomment.map(singleCom =>(<SingleComment hendleLikeComment={()=>{hendleLikeComment(singleCom._id)}} singleCom={singleCom} key={singleCom._id}></SingleComment>))}</div>
                                  ) : (<h1>No Comment Yet</h1>) }  
                                    
                                 </div>

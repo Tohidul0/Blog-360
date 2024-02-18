@@ -13,6 +13,7 @@ export const varifyToken = (req, res, next) => {
       return next(errorHendeler(401, 'Unauthorized'));
     }
     req.user = user;
+    console.log(req.user)
     next();
   });
 };
