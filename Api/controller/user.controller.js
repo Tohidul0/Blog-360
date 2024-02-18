@@ -95,7 +95,7 @@ import  bcryptjs from 'bcryptjs'
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
     const sortData = req.query.order ==='asc' ? 1 : -1;
-    const users = await User.find().sort({updateAt : sortData}).skip(startIndex).limit(limit);
+    const users = await User.find().sort({updateAt : sortData}).skip(startIndex);
     
     
     const totalpost = await User.countDocuments();

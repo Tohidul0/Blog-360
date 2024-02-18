@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import CallCompo from '../components/CallCompo';
 import { useSelector } from 'react-redux';
 import SingleComment from '../components/SingleComment';
+import PostCard from '../components/PostCard';
 
 function PostPage(props) {
     const [comment, setComment] = useState({});
@@ -12,6 +13,7 @@ function PostPage(props) {
     const [err, setErr] = useState(null)
     const {postslug} = useParams();
     const [post, setPost] =useState(null)
+    const [morepost, setMorepost] = useState(null);
     
     console.log(postslug)
     useEffect(() => {
@@ -111,6 +113,23 @@ function PostPage(props) {
    }
 
 
+   useEffect(() =>{
+    const laodposts = async () =>{
+          try{
+            const res = await fetch('http://localhost:3000/api/post/allposts?limit=3')
+          const data = await res.json()
+          setMorepost(data.posts); 
+          console.log(data.posts)
+          } 
+          catch (err){
+            console.log(err);
+          }
+        
+    }
+    laodposts();
+}, [])
+
+
 
     return (
         <div  className='justify-center flex mb-10'>
@@ -152,6 +171,12 @@ function PostPage(props) {
                         <h2 className='text-xs text-center mt-2'>Write a comment you have to <span className=' text-teal-700 font-bold'>Sign in</span></h2>
                         </Link>
                     </div>) }
+                    <div className='mt-20'>
+                        <h1 className='text-3xl text-center'>Recent Post</h1>
+                        <div className=' sm:w-full md:w-4/5 mx-auto flex flex-wrap gap-5'>
+                            {morepost.map(onepost => <PostCard onepost={onepost}></PostCard>)}
+                        </div>
+                    </div>
                 </div>
             ) : (
                 <div className='min-h-screen justify-center align-middle my-auto'>

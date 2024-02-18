@@ -26,7 +26,7 @@ export const createPost = async (req, res, next) =>{
 export const allpost = async (req, res, next) =>{
     try{
       const startIndex = parseInt(req.query.startIndex) || 0;
-      const limit = parseInt(req.query.limit) || 9;
+      const limit = parseInt(req.query.limit) || 100;
       const sortData = req.query.order ==='asc' ? 1 : -1;
       const posts = await Post.find({
         ...(req.query.userId && {userId : req.query.userId}),
@@ -39,7 +39,7 @@ export const allpost = async (req, res, next) =>{
             {content: {$regex : req.query.searchTerm, $options : 'i'}},
           ],
         }),
-    }).sort({updateAt : sortData}).skip(startIndex);
+    }).sort({updateAt : sortData}).skip(startIndex).limit(limit);
       
       
       const totalpost = await Post.countDocuments();
