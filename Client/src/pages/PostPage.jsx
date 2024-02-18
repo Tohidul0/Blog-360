@@ -174,7 +174,7 @@ function PostPage(props) {
                     <div className='mt-20'>
                         <h1 className='text-3xl text-center'>Recent Post</h1>
                         <div className=' sm:w-full md:w-4/5 mx-auto flex flex-wrap gap-5'>
-                            {morepost.map(onepost => <PostCard onepost={onepost}></PostCard>)}
+                            {morepost && morepost.map(onepost => <PostCard onepost={onepost} key={onepost._id}></PostCard>)}
                         </div>
                     </div>
                 </div>

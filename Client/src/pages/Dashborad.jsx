@@ -5,6 +5,7 @@ import DashProfile from '../components/Dashboard/DashProfile';
 import PrivateRoute from './../components/PrivateRoute';
 import Allposts from '../components/Allposts';
 import Alluser from '../components/Alluser';
+import Allcomment from '../components/Allcomment';
 
 
 function Dashborad(props) {
@@ -31,6 +32,7 @@ function Dashborad(props) {
            {tab ==='profile' && <DashProfile></DashProfile>}
            {tab==='posts' && <Allposts></Allposts>}
            {tab==='users' && <Alluser></Alluser>}
+           {tab==='comment' && <Allcomment></Allcomment>}
            </div>
            
            

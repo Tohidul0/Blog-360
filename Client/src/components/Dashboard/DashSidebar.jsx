@@ -68,6 +68,11 @@ function DashSidebar(props) {
                       All User  
                     </Sidebar.Item>
                     </Link >
+                    <Link to='/dashboard?tab=comment ' >
+                    <Sidebar.Item active={tab ==='comment'}  icon={TbUsersGroup} labelColor="dark" as='div'>
+                      All Comment  
+                    </Sidebar.Item>
+                    </Link >
                     </>
                 )
                }
