@@ -7,6 +7,7 @@ import { deleteSucces } from '../../redux/user/userSlice';
 import { BsFillFileEarmarkPostFill } from "react-icons/bs";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 import { TbUsersGroup } from "react-icons/tb";
+import { AiOutlineComment } from "react-icons/ai";
 
 function DashSidebar(props) {
     const {currentUser} = useSelector(state => state.user)
@@ -69,7 +70,7 @@ function DashSidebar(props) {
                     </Sidebar.Item>
                     </Link >
                     <Link to='/dashboard?tab=comment ' >
-                    <Sidebar.Item active={tab ==='comment'}  icon={TbUsersGroup} labelColor="dark" as='div'>
+                    <Sidebar.Item active={tab ==='comment'}  icon={AiOutlineComment} labelColor="dark" as='div'>
                       All Comment  
                     </Sidebar.Item>
                     </Link >

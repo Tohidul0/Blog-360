@@ -81,7 +81,7 @@ function Header(props) {
                         <span className='block text-medium font-semibold'>{currentUser.email}</span>
                     </DropdownHeader>
                     <DropdownItem>
-                        <Link to="/dashboard">Profile</Link>
+                        <Link to="/dashboard?tab=dash">Profile</Link>
                     </DropdownItem>
                     <DropdownItem>
                         <Link onClick={gotoSignOut} className='font-semibold' >Sign Out</Link>

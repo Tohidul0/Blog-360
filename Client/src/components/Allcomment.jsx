@@ -34,7 +34,7 @@ function Allcomment(props) {
         <div className=' table-auto overflow-x-scroll md:mx-auto p-5'>
            {currentUser.isAdmin && allcomment? (
             <>
-                <Table hoverable className='shadow-md'>
+                <Table hoverable className='shadow-lg'>
                     <Table.Head>
                         <Table.HeadCell>
                             Updated Date
@@ -46,7 +46,7 @@ function Allcomment(props) {
                             Post Id
                         </Table.HeadCell>
                         <Table.HeadCell>
-                           ontent
+                           content
                         </Table.HeadCell>
                         <Table.HeadCell>
                            Delete

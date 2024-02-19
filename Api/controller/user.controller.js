@@ -98,7 +98,7 @@ import  bcryptjs from 'bcryptjs'
     const users = await User.find().sort({updateAt : sortData}).skip(startIndex);
     
     
-    const totalpost = await User.countDocuments();
+    const totaluser = await User.countDocuments();
     const now = new Date();
     const oneMonthAgo = new Date(
       now.getFullYear(),
@@ -107,14 +107,14 @@ import  bcryptjs from 'bcryptjs'
     );
     
     
-    const lastMonthPost = await User.countDocuments({
+    const lastMonthUser = await User.countDocuments({
       createdAt :{$gte : oneMonthAgo}
     });
 
     res.status(200).json({
       users,
-      totalpost,
-      lastMonthPost
+      totaluser,
+      lastMonthUser
     });
 
   }
