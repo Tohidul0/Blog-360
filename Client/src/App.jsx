@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import AdminPrivateRoute from './components/adminPrivateRoute';
 import Create_new_post from './pages/Create_new_post';
 import PostPage from './pages/PostPage';
+import Search from './pages/Search';
 
 function App() {
  
@@ -21,6 +22,7 @@ function App() {
          <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/about' element={<About></About>}></Route>
+            <Route path='/search' element ={<Search></Search>}> </Route>
             <Route element={<PrivateRoute/>}>
               
               <Route path='/dashboard' element={<Dashborad></Dashborad>}></Route>

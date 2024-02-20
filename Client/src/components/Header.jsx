@@ -1,6 +1,6 @@
 import { Avatar, Button, Dropdown, DropdownHeader, DropdownItem, Navbar, TextInput } from 'flowbite-react';
-import React from 'react';
-import {  Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {  Link, useLocation, useNavigate } from 'react-router-dom';
 import {AiOutlineSearch} from 'react-icons/ai'
 import {FaMoon, FaSun} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,34 @@ function Header(props) {
     const dispatch = useDispatch(state =>state.theme);
     const {currentUser} = useSelector(state => state.user);
     const {theme} = useSelector(state => state.theme);
+
+
+    const [searchTerm, setSearchTerm] = useState('')
+    const location = useLocation()
+    const navigate = useNavigate()
+    //console.log(location)
+    console.log(searchTerm)
+
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search)
+        //console.log(urlParams);
+        const searchurlParams = urlParams.get('searchTerm')
+        //console.log(searchurlParams);
+        if(searchurlParams){
+            setSearchTerm(searchurlParams);
+            
+        }
+    }, [location.search])
+
+    const hendleSubmit = async(e) =>{
+        e.preventDefault();
+        const urlParams = new URLSearchParams(location.search)
+         urlParams.set('searchTerm', searchTerm)
+         const searchBox = urlParams.toString();
+         navigate(`/search?${searchBox}`);
+
+    }
 
 
 
@@ -40,12 +68,14 @@ function Header(props) {
                 <span className='text-red-600 cursor-pointer'>Blog</span>
                 360
             </Link>
-            <form>
+            <form onSubmit={hendleSubmit}>
                 <TextInput
                     type='text'
                     placeholder='Search...'
                     rightIcon={AiOutlineSearch}
                     className='hidden lg:inline'
+                     value={searchTerm}
+                     onChange={(e)=>setSearchTerm(e.target.value)}
                 />
             </form>
             <Button className='lg:hidden' color='gray' pill>

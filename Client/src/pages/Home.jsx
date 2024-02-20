@@ -1,9 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import CallCompo from './../components/CallCompo';
+import PostCard from '../components/PostCard';
+import { useLocation } from 'react-router-dom';
+import { Spinner } from 'flowbite-react';
+
+
+
+
+
+
+
 
 function Home(props) {
+
+    const [morepost, setMorepost] = useState(null);
+    
+
+
+
+    useEffect(() =>{
+        const laodposts = async () =>{
+              try{
+                const res = await fetch('http://localhost:3000/api/post/allposts?limit=3')
+              const data = await res.json()
+              setMorepost(data.posts); 
+              //console.log(data.posts)
+              } 
+              catch (err){
+                console.log(err);
+              }
+            
+        }
+        laodposts();
+    }, [])
+
+  
+
     return (
-        <div>
-            <h1>i am home</h1>
+        <div className='min-h-screen mt-10'>
+            <h1 className='text-3xl text-center font-bold font-serif'>WELCOME TO MY BLOG</h1>
+        
+            <div  className='white-space: nowrap text-5xl text-center mx-auto font-semibold mt-10 mb-5'>
+                <span className='text-red-600  cursor-pointer'>Blog</span>
+                360
+            </div>
+            <p className='w-3/5 mx-auto mb-20 opacity-70'>Explore Blog360, your gateway to enriching programming knowledge. Dive into a diverse array of tech blogs covering JavaScript, React, Node.js, Express.js, and more – stay updated and elevate your programming skills!</p>
+            <CallCompo></CallCompo>
+            <div className='mt-20'>
+                        <h1 className='text-3xl text-center'>Recent Post</h1>
+                        <div className=' sm:w-full md:w-4/5 sm:mx-auto flex flex-wrap gap-5 justify-center '>
+                            {morepost && morepost.map(onepost => <PostCard onepost={onepost} key={onepost._id}></PostCard>)}
+                        </div>
+                    </div>
+
+
         </div>
     );
 }
