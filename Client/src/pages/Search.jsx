@@ -60,12 +60,7 @@ function Search(props) {
                     id='searchTerm'
                     placeholder='Search... 
                     '></TextInput>
-                    <div className='mt-10'>
-                        <Label >Catagory:</Label>
-                        <TextInput
-                        id='category'
-                        placeholder='category'></TextInput>
-                    </div>
+                    
                 </form>
             </div>
             <div className='grow m-10'>
