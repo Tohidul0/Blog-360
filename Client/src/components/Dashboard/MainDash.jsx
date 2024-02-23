@@ -115,19 +115,19 @@ function MainDash(props) {
             <div className=' sm:flex-row sm:gap-4 md:flex   md:gap-5 justify-center items-center'>
                 <div className='border-2 bg-blue-400 rounded-2xl p-5 m-3'>
                     <TbUsersGroup className='w-10 h-10 mx-auto mb-2'/>
-                    <h1>Total Users : {users.totaluser}</h1>
-                    <h1>Last Month Users : {users.lastMonthUser}</h1>
+                    <h1 className='text-center'>Total Users : {users.totaluser}</h1>
+                    <h1 className='text-center'>Last Month Users : {users.lastMonthUser}</h1>
                 </div>
                 <div className='border-2 bg-violet-400 rounded-2xl p-5 m-3'>
                     <BsFillFileEarmarkPostFill className='w-10 h-10 mx-auto mb-2'/>
-                    <h1>Total Post : {userposts.totalpost}</h1>
-                    <h1>Last Month Post : {userposts.lastMonthPost}</h1>
+                    <h1 className='text-center'>Total Post : {userposts.totalpost}</h1>
+                    <h1 className='text-center'>Last Month Post : {userposts.lastMonthPost}</h1>
                 </div>
                 {allcomment && (
                 <div className='border-2 bg-slate-500 rounded-2xl p-5 m-3'>
                     <AiOutlineComment className='w-10 h-10 mx-auto mb-2'/>
-                    <h1>Total Comments : {allcomment.totalcomment}</h1>
-                    <h1>Last Month Comments : {allcomment.lastMonthComment}</h1>
+                    <h1 className='text-center'>Total Comments : {allcomment.totalcomment}</h1>
+                    <h1 className='text-center'>Last Month Comments : {allcomment.lastMonthComment}</h1>
                 </div>
                 )}
                 

@@ -1,9 +1,18 @@
 import Post from "../models/post.model.js";
 import { errorHendeler } from "../utils/error.js"
+import path from 'path';
+
+
+
+
 
 
 
 export const createPost = async (req, res, next) =>{
+  const { title, catagory, content , image } = req.body;
+  console.log(req.body)
+  const imageBuffer = Buffer.from(image, 'base64');
+  try{
   if (!req.user.isAdmin){
     return next(errorHendeler(403, 'Unautorized'));
   }
@@ -12,14 +21,14 @@ export const createPost = async (req, res, next) =>{
   }
   const slug = req.body.title.split(' ').join('-').toLowerCase();
   const newPost = new Post({
-    ...req.body, slug, userId: req.user.id
+    title, catagory, content, image: imageBuffer, slug, userId: req.user.id 
   });
-  try{
+
     await newPost.save()
     res.json(newPost)
   }
   catch(err){
-    next(errorHendeler(err));
+    next(err);
   }
 }
 

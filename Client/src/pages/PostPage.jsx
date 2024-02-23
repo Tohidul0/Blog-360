@@ -14,6 +14,9 @@ function PostPage(props) {
     const {postslug} = useParams();
     const [post, setPost] =useState(null)
     const [morepost, setMorepost] = useState(null);
+    const [data, setData] = useState([]);
+    const [arrayImg, setArrayImg] = useState([]);
+    const [imageSrc,setImageSrc] = useState(null);
     
     console.log(postslug)
     useEffect(() => {
@@ -23,6 +26,10 @@ function PostPage(props) {
                 const data = await res.json();
                 //console.log(data.posts[0])
                 setPost(data.posts[0])
+                setData(data);
+                setArrayImg(post.image.data);
+                console.log(arrayImg)
+                console.log(data.posts[0])
 
 
             }
@@ -32,6 +39,21 @@ function PostPage(props) {
         }
         loadPostSlug();
     }, [postslug])
+
+    // useEffect(()=>{
+    //     const imgData = {
+    //         type: 'Buffer',
+    //         data : arrayImg
+    //     }
+
+    //     const base64String = `data:image/png;base64,${Buffer.from(imgData.data).toString('base64')}`;
+    // setImageSrc(base64String);
+    // },[arrayImg])
+
+
+
+
+
 
     useEffect(() =>{
         const loadComments = async() =>{
@@ -140,7 +162,7 @@ function PostPage(props) {
                         <h1 className='text-center text-5xl font-serif pt-5'>{post.title}</h1>
                         <Button color='gray' pill className='text-center text-xs mt-3 mx-auto  '>{post.catagory}</Button>
                     </div>
-                    <img className='md:w-3/5 sm:w-4/5 mx-auto pt-5 rounded-lg overflow-hidden' src={post.image}></img>
+                    <img className='md:w-3/5 sm:w-4/5 mx-auto pt-5 rounded-lg overflow-hidden' src={imageSrc}></img>
                     <div className=' border-y-2 md:w-3/5 sm:w-4/5 mx-auto rounded my-5 p-5'> 
                         <p className=''>{post.content}</p>
                     </div>
@@ -173,7 +195,7 @@ function PostPage(props) {
                     </div>) }
                     <div className='mt-20'>
                         <h1 className='text-3xl text-center'>Recent Post</h1>
-                        <div className=' sm:w-full md:w-4/5 mx-auto flex flex-wrap gap-5'>
+                        <div className=' sm:w-full md:w-4/5 mx-auto justify-center items-center flex flex-wrap gap-5'>
                             {morepost && morepost.map(onepost => <PostCard onepost={onepost} key={onepost._id}></PostCard>)}
                         </div>
                     </div>
