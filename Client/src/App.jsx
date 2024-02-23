@@ -8,10 +8,10 @@ import Register from './pages/Register';
 import Header from './components/Header';
 import Footercompo from './pages/Footercompo';
 import PrivateRoute from './components/PrivateRoute';
-import AdminPrivateRoute from './components/adminPrivateRoute';
 import Create_new_post from './pages/Create_new_post';
 import PostPage from './pages/PostPage';
 import Search from './pages/Search';
+import AdminPrivateRoute from './components/AdminPrivateRoute';
 
 function App() {
  

@@ -8,3 +8,4 @@ function AdminPrivateRoute(props) {
 }
 
 export default AdminPrivateRoute;
+//render
