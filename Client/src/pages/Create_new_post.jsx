@@ -13,6 +13,7 @@ function Create_new_post(props) {
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+  const [clientiamge, setClientimage] = useState(null)
 
   const navigate = useNavigate();
 
@@ -21,6 +22,10 @@ function Create_new_post(props) {
       if (!file) {
         alert('Please select an image');
         return;
+      }
+      if (file) {
+        const imagecl= URL.createObjectURL(file);
+        setClientimage(imagecl)
       }
       setImageUploadError(null);
       const storage = getStorage(app);
@@ -90,11 +95,11 @@ function Create_new_post(props) {
                 Upload Image
             </Button>  
             </div>
-            {/* {formData.image &&(
+             { clientiamge &&(
                 <div className='sm:w-full  md:w-3/5 mx-auto mt-5 h-80 overflow-auto'>
-                    <img className='h-80  mx-auto' src={form.image.name}></img>
+                    <img className='h-80  mx-auto' src={clientiamge}></img>
                 </div>
-            )} */}
+            )} 
             <TextInput type='text'id="title"  placeholder='Title' className='sm:w-full md:w-3/5 mx-auto mt-5' onBlur={(e) => setFormData({...formData,[e.target.id] : e.target.value})}></TextInput>
             <Select id="catagory"  className='sm:w-full md:w-3/5 mx-auto mt-5' onBlur={(e) => setFormData({...formData,[e.target.id] : e.target.value})}>
                 <option type="uncategorized">Choose a catagory</option>

@@ -7,6 +7,7 @@ import postRouter from './routes/post.route.js'
 import commentRouter from './routes/comment.route.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
+import path from 'path'
 
 
 // var cors = require("cors");
@@ -20,6 +21,8 @@ mongoose.connect(process.env.MONGO)
 .catch(error=>{
     console.log(error);
 })
+
+const __dirname = path.resolve();
 
 
 const app = express();
@@ -51,7 +54,11 @@ app.use('/api/post', postRouter);
 app.use('/api/comment', commentRouter)
 
 
+app.use(express.static(path.join(__dirname, '/Client/dist')));
 
+app.get('*', (res, req) =>{
+    res.sendFile(path.join(__dirname, 'Client', 'dist', 'index.html'))
+});
 // error hendleing----------------------------------------
 app.use((err, req, res, next) => {
  const statusCode  = req.statusCode || 500;

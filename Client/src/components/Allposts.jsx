@@ -63,7 +63,8 @@ function Allposts(props) {
                                         <img className='w-20 h-10' src={post.image}></img>
                                     </Link>
                                 </TableCell>
-                                <TableCell>{post.content}</TableCell>
+                                <TableCell >
+                                    <div className=' w-50 h-10 overflow-hidden'>{post.content}</div></TableCell>
                                 <TableCell><span className='text-red-600 hover:underline cursor-pointer'>Delete</span></TableCell>
                                 <TableCell><span className='text-red-600 hover:underline cursor-pointer'>Edit</span></TableCell>
                             </TableRow>
