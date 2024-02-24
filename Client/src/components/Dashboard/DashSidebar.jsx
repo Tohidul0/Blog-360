@@ -14,7 +14,7 @@ function DashSidebar(props) {
     const dispatch = useDispatch()
     const location = useLocation();
 
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
     //console.log(location)
     const [tab, setTab] = useState('');
     useEffect(() =>{

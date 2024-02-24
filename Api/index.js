@@ -8,7 +8,7 @@ import commentRouter from './routes/comment.route.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path'
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ;
 
 // var cors = require("cors");
 

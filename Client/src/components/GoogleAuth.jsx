@@ -9,7 +9,7 @@ import { signInFailure, signInSuccess } from '../redux/user/userSlice';
 function GoogleAuth(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch()
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL ;
     const hendleGoogle = async () =>{
         const auth = getAuth(app)
         const provider = new GoogleAuthProvider()

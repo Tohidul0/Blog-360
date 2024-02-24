@@ -12,7 +12,7 @@ function DashProfile(props) {
     const [formdata, setFormdata] = useState({});
     const dispatch = useDispatch()
 
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
     const hendleImgUp =(e) =>{
         const img =e.target.files[0]
        if(img){

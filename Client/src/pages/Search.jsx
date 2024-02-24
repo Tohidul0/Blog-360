@@ -23,7 +23,7 @@ function Search(props) {
         const sortParams = urlParams.get('sort');
         const categorylParams = urlParams.get('category');
 
-        const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+        const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
 
         //console.log(searchurlParams);
         if(searchurlParams || sortParams|| categorylParams ){

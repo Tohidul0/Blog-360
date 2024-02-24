@@ -5,7 +5,7 @@ import { BiSolidLike } from "react-icons/bi";
 function SingleComment(props) {
     const {content, userId, likes, numberOfLikes} =props.singleCom;
     const {hendleLikeComment} =props;
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
    // console.log(props.singleCom)
     const [user, setUser] = useState({});
 

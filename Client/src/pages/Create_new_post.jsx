@@ -14,7 +14,7 @@ function Create_new_post(props) {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const [clientiamge, setClientimage] = useState(null)
-  const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+  const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
 
   const navigate = useNavigate();
 

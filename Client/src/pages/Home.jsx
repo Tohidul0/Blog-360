@@ -12,7 +12,7 @@ import PostCard from '../components/PostCard';
 function Home(props) {
 
     const [morepost, setMorepost] = useState(null);
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL ;
     
 
 

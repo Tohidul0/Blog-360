@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Allposts(props) {
     const {currentUser} = useSelector(state => state.user)
     const [userposts, setUserposts] = useState({})
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL ;
     useEffect(() =>{
         const laodposts = async () =>{
               try{

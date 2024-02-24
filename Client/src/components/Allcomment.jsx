@@ -7,7 +7,7 @@ function Allcomment(props) {
     const {currentUser} = useSelector(state => state.user)
     const [allcomment, setAllcomment] = useState(null)
 
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL ;
 
 
     useEffect(() =>{

@@ -10,7 +10,7 @@ function LogIn(props) {
    const {loading, error:errormessage} = useSelector(state => state.user)
     const navigate = useNavigate('');
     const dispatch = useDispatch();
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL ;
     
     
     // hendleChane part----------------------------------------

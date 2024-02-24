@@ -9,7 +9,7 @@ function Register(props) {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate('');
 
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
 
     const hendleChange =(e) =>{
         setFormData({...formData, [e.target.id] : e.target.value.trim() })

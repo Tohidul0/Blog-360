@@ -5,7 +5,7 @@ import CallCompo from '../components/CallCompo';
 function Projects(props) {
 
     const [morepost, setMorepost] = useState(null);
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
 
     useEffect(() =>{
         const laodposts = async () =>{

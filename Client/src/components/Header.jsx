@@ -11,7 +11,7 @@ function Header(props) {
     const dispatch = useDispatch(state =>state.theme);
     const {currentUser} = useSelector(state => state.user);
     const {theme} = useSelector(state => state.theme);
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL  ;
 
     const [searchTerm, setSearchTerm] = useState('')
     const location = useLocation()

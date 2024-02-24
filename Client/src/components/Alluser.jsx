@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 function Alluser(props) {
     const {currentUser} = useSelector(state => state.user)
     const [users, setUsers] = useState({});
-    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL ;
     useEffect(() =>{
         const laodposts = async () =>{
             const accessToken = 'access_token';
