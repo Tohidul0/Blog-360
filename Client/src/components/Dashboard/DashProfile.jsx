@@ -11,6 +11,8 @@ function DashProfile(props) {
     const [imgtourl, setImgtourl] =useState(null);
     const [formdata, setFormdata] = useState({});
     const dispatch = useDispatch()
+
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     const hendleImgUp =(e) =>{
         const img =e.target.files[0]
        if(img){
@@ -34,7 +36,7 @@ function DashProfile(props) {
         try{
             console.log(JSON.stringify(formdata));
             dispatch(updateStart())
-            const res = await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`,{
+            const res = await fetch(`${apiUrl}/api/user/update/${currentUser._id}`,{
             method : 'PUT',
             headers: {'Content-Type' : 'application/json'},
             credentials: 'include',
@@ -61,7 +63,7 @@ function DashProfile(props) {
         // alert("are you sure delete Acount?");
         const yesDelete = window.confirm("are you sure delete Acount?");
         if(yesDelete){
-            const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, { 
+            const res = await fetch(`${apiUrl}/api/user/delete/${currentUser._id}`, { 
             method: "DELETE",
             headers: {'Content-Type' : 'application/json'},
             credentials: 'include',
@@ -84,7 +86,7 @@ function DashProfile(props) {
        
         const yesDelete = window.confirm("are you sure SignOut?");
         if(yesDelete){
-            const res = await fetch("http://localhost:3000/api/user/signOut", { 
+            const res = await fetch(`${apiUrl}/api/user/signOut`, { 
             method: "POST",
             headers: {'Content-Type' : 'application/json'},
             credentials: 'include',

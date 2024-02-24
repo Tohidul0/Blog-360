@@ -10,6 +10,7 @@ function LogIn(props) {
    const {loading, error:errormessage} = useSelector(state => state.user)
     const navigate = useNavigate('');
     const dispatch = useDispatch();
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     
     
     // hendleChane part----------------------------------------
@@ -31,7 +32,7 @@ function LogIn(props) {
         }
         try{
             dispatch(signInStart());
-            const res = await fetch('http://localhost:3000/api/signIn',{
+            const res = await fetch(`${apiUrl}/api/signIn`,{
                 method: "POST",
                 headers: {'Content-Type' : 'application/json'},
                 credentials: 'include',

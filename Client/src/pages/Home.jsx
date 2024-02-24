@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CallCompo from './../components/CallCompo';
 import PostCard from '../components/PostCard';
-import { useLocation } from 'react-router-dom';
-import { Spinner } from 'flowbite-react';
 
 
 
@@ -14,14 +12,16 @@ import { Spinner } from 'flowbite-react';
 function Home(props) {
 
     const [morepost, setMorepost] = useState(null);
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     
+
 
 
 
     useEffect(() =>{
         const laodposts = async () =>{
               try{
-                const res = await fetch('http://localhost:3000/api/post/allposts?limit=3')
+                const res = await fetch(`${apiUrl}/api/post/allposts?limit=3`)
               const data = await res.json()
               setMorepost(data.posts); 
               //console.log(data.posts)

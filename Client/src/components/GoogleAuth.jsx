@@ -9,13 +9,14 @@ import { signInFailure, signInSuccess } from '../redux/user/userSlice';
 function GoogleAuth(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     const hendleGoogle = async () =>{
         const auth = getAuth(app)
         const provider = new GoogleAuthProvider()
         provider.setCustomParameters({prompt : 'select_account'})
         try{
             const resultFromGoogle = await signInWithPopup(auth, provider);
-            const res = await fetch('http://localhost:3000/api/google',{
+            const res = await fetch(`${apiUrl}/api/google`,{
                 method: "POST",
                 headers: {'Content-Type' : 'application/json'},
                 credentials: 'include',

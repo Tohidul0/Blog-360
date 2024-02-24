@@ -5,12 +5,12 @@ import CallCompo from '../components/CallCompo';
 function Projects(props) {
 
     const [morepost, setMorepost] = useState(null);
-
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
 
     useEffect(() =>{
         const laodposts = async () =>{
               try{
-                const res = await fetch('http://localhost:3000/api/post/allposts')
+                const res = await fetch(`${apiUrl}/api/post/allposts`)
               const data = await res.json()
               setMorepost(data.posts); 
               //console.log(data.posts)

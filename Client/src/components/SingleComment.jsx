@@ -5,13 +5,14 @@ import { BiSolidLike } from "react-icons/bi";
 function SingleComment(props) {
     const {content, userId, likes, numberOfLikes} =props.singleCom;
     const {hendleLikeComment} =props;
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
    // console.log(props.singleCom)
     const [user, setUser] = useState({});
 
     useEffect(() =>{
         const getUser = async () =>{
             try{
-                const res = await fetch(`http://localhost:3000/api/user/${userId}`)
+                const res = await fetch(`${apiUrl}/api/user/${userId}`)
                 const data= await res.json();
                 setUser(data);
                 console.log(data);

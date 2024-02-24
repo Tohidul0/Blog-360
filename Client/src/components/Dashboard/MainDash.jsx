@@ -14,13 +14,15 @@ function MainDash(props) {
     const [allcomment, setAllcomment] = useState(null)
     const [morepost, setMorepost] = useState(null);
 
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+
 
 
     useEffect(() =>{
         const laodposts = async () =>{
             const accessToken = 'access_token';
               try{
-                const res = await fetch('http://localhost:3000/api/user/alluser', {
+                const res = await fetch(`${apiUrl}/api/user/alluser`, {
                     method: 'GET',
                     headers: {
                       'Authorization': `Bearer ${accessToken}`,
@@ -48,7 +50,7 @@ function MainDash(props) {
     useEffect(() =>{
         const laodposts = async () =>{
               try{
-                const res = await fetch('http://localhost:3000/api/post/allposts')
+                const res = await fetch(`${apiUrl}/api/post/allposts`)
               const data = await res.json()
               setUserposts(data); 
               //console.log(userposts)
@@ -71,7 +73,7 @@ function MainDash(props) {
         const laodposts = async () =>{
             const accessToken = 'access_token';
               try{
-                const res = await fetch('http://localhost:3000/api/comment/getAllComment', {
+                const res = await fetch(`${apiUrl}/api/comment/getAllComment`, {
                     method: 'GET',
                     headers: {
                       'Authorization': `Bearer ${accessToken}`,
@@ -97,7 +99,7 @@ function MainDash(props) {
     useEffect(() =>{
       const laodposts = async () =>{
             try{
-              const res = await fetch('http://localhost:3000/api/post/allposts?limit=3')
+              const res = await fetch(`${apiUrl}/api/post/allposts?limit=3`)
             const data = await res.json()
             setMorepost(data.posts); 
             console.log(data.posts)

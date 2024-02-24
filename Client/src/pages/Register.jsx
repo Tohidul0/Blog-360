@@ -8,6 +8,9 @@ function Register(props) {
     const [errormessage, setErrormessage] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate('');
+
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+
     const hendleChange =(e) =>{
         setFormData({...formData, [e.target.id] : e.target.value.trim() })
         
@@ -21,7 +24,7 @@ function Register(props) {
         }
         try{
             setLoading(true);
-            const res = await fetch('http://localhost:3000/api/signUp',{
+            const res = await fetch(`${apiUrl}/api/signUp`,{
                 method: "POST",
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify(formData)

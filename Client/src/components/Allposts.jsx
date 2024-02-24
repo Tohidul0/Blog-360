@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom';
 function Allposts(props) {
     const {currentUser} = useSelector(state => state.user)
     const [userposts, setUserposts] = useState({})
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     useEffect(() =>{
         const laodposts = async () =>{
               try{
-                const res = await fetch('http://localhost:3000/api/post/allposts')
+                const res = await fetch(`${apiUrl}/api/post/allposts`)
               const data = await res.json()
               setUserposts(data.posts); 
               console.log(userposts)

@@ -6,11 +6,15 @@ import { useSelector } from 'react-redux';
 function Allcomment(props) {
     const {currentUser} = useSelector(state => state.user)
     const [allcomment, setAllcomment] = useState(null)
+
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+
+
     useEffect(() =>{
         const laodposts = async () =>{
             const accessToken = 'access_token';
               try{
-                const res = await fetch('http://localhost:3000/api/comment/getAllComment', {
+                const res = await fetch(`${apiUrl}/api/comment/getAllComment`, {
                     method: 'GET',
                     headers: {
                       'Authorization': `Bearer ${accessToken}`,

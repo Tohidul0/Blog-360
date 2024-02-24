@@ -5,12 +5,13 @@ import { useSelector } from 'react-redux';
 
 function Alluser(props) {
     const {currentUser} = useSelector(state => state.user)
-    const [users, setUsers] = useState({})
+    const [users, setUsers] = useState({});
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     useEffect(() =>{
         const laodposts = async () =>{
             const accessToken = 'access_token';
               try{
-                const res = await fetch('http://localhost:3000/api/user/alluser', {
+                const res = await fetch(`${apiUrl}/api/user/alluser`, {
                     method: 'GET',
                     headers: {
                       'Authorization': `Bearer ${accessToken}`,

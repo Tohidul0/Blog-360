@@ -11,7 +11,7 @@ function Header(props) {
     const dispatch = useDispatch(state =>state.theme);
     const {currentUser} = useSelector(state => state.user);
     const {theme} = useSelector(state => state.theme);
-
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
 
     const [searchTerm, setSearchTerm] = useState('')
     const location = useLocation()
@@ -46,7 +46,7 @@ function Header(props) {
        
         const yesDelete = window.confirm("are you sure SignOut?");
         if(yesDelete){
-            const res = await fetch("http://localhost:3000/api/user/signOut", { 
+            const res = await fetch(`${apiUrl}/api/user/signOut`, { 
             method: "POST",
             headers: {'Content-Type' : 'application/json'},
             });

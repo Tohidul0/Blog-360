@@ -14,13 +14,15 @@ function PostPage(props) {
     const {postslug} = useParams();
     const [post, setPost] =useState(null)
     const [morepost, setMorepost] = useState(null);
+
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     
     
     console.log(postslug)
     useEffect(() => {
         const loadPostSlug = async() =>{
             try{
-                const res = await fetch(`http://localhost:3000/api/post/allposts?slug=${postslug}`)
+                const res = await fetch(`${apiUrl}/api/post/allposts?slug=${postslug}`)
                 const data = await res.json();
                 //console.log(data.posts[0])
                 setPost(data.posts[0])
@@ -38,7 +40,7 @@ function PostPage(props) {
     useEffect(() =>{
         const loadComments = async() =>{
            try{
-             const res = await fetch(`http://localhost:3000/api/comment/getcomment/${post._id}`)
+             const res = await fetch(`${apiUrl}/api/comment/getcomment/${post._id}`)
              const data= await res.json();
              setAllcomment(data);
              //console.log(data);
@@ -68,7 +70,7 @@ function PostPage(props) {
         else{
             console.log(comment)
             try{
-                const res = await fetch('http://localhost:3000/api/comment/create',{
+                const res = await fetch(`${apiUrl}/api/comment/create`,{
                 method: "POST",
                 headers: {'Content-Type' : 'application/json'},
                 credentials: 'include',
@@ -93,7 +95,7 @@ function PostPage(props) {
    const  hendleLikeComment = async(commentId) =>{
     console.log('weufhiodlkjdehd')
     try{
-        const res = await fetch(`http://localhost:3000/api/comment/likeComment/${commentId}`,{
+        const res = await fetch(`${apiUrl}/api/comment/likeComment/${commentId}`,{
                 method: "PUT",
                 credentials: 'include',
                 
@@ -118,7 +120,7 @@ function PostPage(props) {
    useEffect(() =>{
     const laodposts = async () =>{
           try{
-            const res = await fetch('http://localhost:3000/api/post/allposts?limit=3')
+            const res = await fetch(`${apiUrl}/api/post/allposts?limit=3`)
           const data = await res.json()
           setMorepost(data.posts); 
           console.log(data.posts)

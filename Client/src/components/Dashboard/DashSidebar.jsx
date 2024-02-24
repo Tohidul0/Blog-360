@@ -11,8 +11,10 @@ import { AiOutlineComment } from "react-icons/ai";
 
 function DashSidebar(props) {
     const {currentUser} = useSelector(state => state.user)
-   const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const location = useLocation();
+
+    const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
     //console.log(location)
     const [tab, setTab] = useState('');
     useEffect(() =>{
@@ -28,7 +30,7 @@ function DashSidebar(props) {
        
         const yesDelete = window.confirm("are you sure SignOut?");
         if(yesDelete){
-            const res = await fetch("http://localhost:3000/api/user/signOut", { 
+            const res = await fetch(`${apiUrl}/api/user/signOut`, { 
             method: "POST",
             headers: {'Content-Type' : 'application/json'},
             });

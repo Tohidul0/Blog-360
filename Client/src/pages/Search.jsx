@@ -23,6 +23,8 @@ function Search(props) {
         const sortParams = urlParams.get('sort');
         const categorylParams = urlParams.get('category');
 
+        const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
+
         //console.log(searchurlParams);
         if(searchurlParams || sortParams|| categorylParams ){
             setSearchFormData( {...searchurlParams,
@@ -33,7 +35,7 @@ function Search(props) {
         }
         const loadPost = async() =>{
             const searchBox = urlParams.toString();
-            const res= await fetch(`http://localhost:3000/api/post/allposts?${searchBox}`)
+            const res= await fetch(`${apiUrl}/api/post/allposts?${searchBox}`)
             const data = await res.json()
             console.log(data)
             if(res.ok){

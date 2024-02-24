@@ -14,6 +14,7 @@ function Create_new_post(props) {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const [clientiamge, setClientimage] = useState(null)
+  const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000' ;
 
   const navigate = useNavigate();
 
@@ -62,7 +63,7 @@ function Create_new_post(props) {
     e.preventDefault();
     console.log(formData)
     try {
-      const res = await fetch('http://localhost:3000/api/post/create', {
+      const res = await fetch(`${apiUrl}/api/post/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
