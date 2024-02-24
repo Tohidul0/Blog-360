@@ -8,7 +8,7 @@ import commentRouter from './routes/comment.route.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path'
-
+const PORT = process.env.PORT || 3000;
 
 // var cors = require("cors");
 
@@ -38,8 +38,8 @@ app.use(cors(
 app.use(cookieParser());
 
 
-app.listen(3000, ()=>{
-    console.log("port 3000 is running  !!!!")
+app.listen(PORT, ()=>{
+    console.log(`Server is running on port ${PORT}`)
 });
 
 
@@ -57,7 +57,9 @@ app.use('/api/comment', commentRouter)
 
 app.use(express.static(path.join(__dirname, '/Client/dist')));
 
-app.get('*', (res, req) =>{
+
+
+app.get('*', (req, res) =>{
     res.sendFile(path.join(__dirname, 'Client', 'dist', 'index.html'))
 });
 // error hendleing----------------------------------------
