@@ -8,7 +8,7 @@ import commentRouter from './routes/comment.route.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path'
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT || 3000;
 
 // var cors = require("cors");
 
@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(cors(
     {
         
-        origin : "https://blog-360.onrender.com",
+        origin : "http://localhost:5173",
         credentials : true,
     }  
 ));
